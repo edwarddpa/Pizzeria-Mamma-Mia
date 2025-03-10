@@ -1,0 +1,11 @@
+header {
+    background-image: url("../assets/imgs/pizza_header.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-size: cover;
+    height: 40vh;
+    color: rgb(16, 0, 0);
+    text-shadow: 1px 1px 2px pink;
+}

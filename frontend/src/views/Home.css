@@ -1,0 +1,35 @@
+.pizzas {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 20px;
+    gap: 5px;
+
+}
+
+.ingredientes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+    
+
+
+}
+
+.ingredientesTexto {
+    font-size: smaller;
+}
+
+.btncards {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.precioDiv {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
