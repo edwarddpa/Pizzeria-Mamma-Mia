@@ -6,6 +6,6 @@ header {
     flex-direction: column;
     background-size: cover;
     height: 40vh;
-    color: rgb(16, 0, 0);
+    color: #100000;
     text-shadow: 1px 1px 2px pink;
 }

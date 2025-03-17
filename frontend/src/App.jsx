@@ -2,18 +2,23 @@ import { useState } from 'react'
 import './App.css'
 import NavBar from './components/NavBar'
 import Home from './views/Home'
-import Footer from './views/Footer'
-
+import Footer from './components/Footer'
+import RegisterPage from './views/RegisterPage'
+import toast, { Toaster } from 'react-hot-toast'
+import { LoginPage } from './views/LoginPage'
 
 function App() {
 
 
   return (
-    <div className=''>
+    <>
+      <Toaster/>
       <NavBar />
-      <Home  />
+      {/*<Home  />*/}
+      {/*<RegisterPage />*/}
+      {<LoginPage />}
       <Footer />
-    </div>
+    </>
   )
 }
 
