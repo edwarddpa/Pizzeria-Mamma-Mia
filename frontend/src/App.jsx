@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import RegisterPage from './views/RegisterPage'
 import toast, { Toaster } from 'react-hot-toast'
 import { LoginPage } from './views/LoginPage'
+import Cart from './views/Cart'
 
 function App() {
 
@@ -16,7 +17,8 @@ function App() {
       <NavBar />
       {/*<Home  />*/}
       {/*<RegisterPage />*/}
-      {<LoginPage />}
+      {/*<LoginPage />*/}
+      <Cart />
       <Footer />
     </>
   )

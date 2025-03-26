@@ -6,6 +6,7 @@ const Pizzacard = ({nombre, precio, ingredientes, img}) => {
 
 
 
+
   return (
     <>
 

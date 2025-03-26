@@ -5,17 +5,22 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import "./Home.css"
+import { pizzas } from '../components/pizzas';
+import CardPizza from '../components/CardPizza';
+import { useState } from 'react';
 
 
 const Home = () => {
+  const [listaPizzas, setListaPizzas] = useState(pizzas)
+
   return (
-    <div>
+  <div>
       <Header />
 
-        <div className='pizzas'>
+      <div className='pizzas'>
 
 
-      <Pizzacard 
+     {/* <Pizzacard 
         nombre="Pizza Napolitana"
         precio={6.453}
         ingredientes={["mozzarella, ", "tomates, ", "jamón, ", "orégano"]}
@@ -36,10 +41,24 @@ const Home = () => {
         precio={7.348}
         ingredientes={["mozzarella, ", "pepperoni, ", "orégano"]}
         img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3"/>
-        </div>
+        </div>*/}
+
+        {listaPizzas.map((pizza, index) => (
+          <CardPizza
+          key={index}
+          id={pizza.id}
+          desc={pizza.desc}
+          name={pizza.name}
+          price={pizza.price}
+          ingredients={pizza.ingredients}
+          img={pizza.img}
+           />
+          ))}
+
 
 
     </div>
+  </div>
   )
 }
 

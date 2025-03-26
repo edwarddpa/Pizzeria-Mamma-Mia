@@ -1,10 +1,9 @@
 .pizzas {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    justify-items: center;
     margin: 20px;
     gap: 5px;
-
 }
 
 .ingredientes {
@@ -13,13 +12,15 @@
     justify-content: center;
     align-items: center;
     align-content: space-between;
-    
+  
 
 
 }
 
 .ingredientesTexto {
     font-size: smaller;
+    color: black;
+
 }
 
 .btncards {

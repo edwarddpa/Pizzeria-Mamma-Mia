@@ -4,3 +4,38 @@
     padding: 10px;
     padding-top: 20px;
 }
+
+.cartPrecio {
+    margin-top: 5px;
+}
+
+.cartCount {
+    margin-top: 5px;
+}
+
+.btnCart {
+    margin-bottom: 7px;
+}
+
+.cartContainer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 200px 0px 200px;
+}
+
+.cartContainerLeft {
+    display: flex;
+    align-items: center;
+}
+
+.cartContainerRight {
+    display: flex;
+    align-items: center;
+}
+
+.cartTotal {
+    padding: 40px;
+    display: flex;
+    justify-content: space-evenly
+}
