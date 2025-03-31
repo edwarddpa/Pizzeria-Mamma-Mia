@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/Header'
 import Pizzacard from '../components/Pizzacard'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import "./Home.css"
-import { pizzas } from '../components/pizzas';
 import CardPizza from '../components/CardPizza';
 import { useState } from 'react';
 
 
 const Home = () => {
-  const [listaPizzas, setListaPizzas] = useState(pizzas)
+  const [listaPizzas, setListaPizzas] = useState([])
+
+  const getPizzas = async () => {
+    const response = await fetch ("http://localhost:5000/api/pizzas")
+    const data = await response.json()
+    setListaPizzas(data)
+  }
+
+  useEffect(() => {
+    getPizzas()
+  }, [])
 
   return (
   <div>

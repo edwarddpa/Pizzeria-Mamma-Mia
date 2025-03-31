@@ -16,7 +16,7 @@ const CardPizza = ({ name, price, ingredients, img, desc }) => {
         <ListGroup.Item className='ingredientes'>
         <h6>Ingredientes:</h6>
             <ul className='ingredientesTexto'>
-                {ingredients.map((ingredient, index) => (
+                {ingredients.toUpperCase.map((ingredient, index) => (
                 <li key={index} className='text-dark'>🍕 {ingredient}</li>
             ))}
             </ul>

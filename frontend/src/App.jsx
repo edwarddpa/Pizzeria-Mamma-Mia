@@ -7,6 +7,7 @@ import RegisterPage from './views/RegisterPage'
 import toast, { Toaster } from 'react-hot-toast'
 import { LoginPage } from './views/LoginPage'
 import Cart from './views/Cart'
+import Pizza from './views/Pizza'
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
       {/*<Home  />*/}
       {/*<RegisterPage />*/}
       {/*<LoginPage />*/}
-      <Cart />
+      {/*<Cart />*/}
+      <Pizza />
       <Footer />
     </>
   )
