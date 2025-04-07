@@ -2,8 +2,17 @@ import React from 'react'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
-const CardPizza = ({ name, price, ingredients, img, desc }) => {
+
+const CardPizza = ({ id, name, price, ingredients, img, desc }) => {
+
+  const handleSubmit = (e) => {
+          e.preventDefault()
+          toast.success('Pizza añadida al carrito!')
+      }
+
   return (
     <div>
     <Card style={{ width: '23rem' }}>
@@ -16,9 +25,13 @@ const CardPizza = ({ name, price, ingredients, img, desc }) => {
         <ListGroup.Item className='ingredientes'>
         <h6>Ingredientes:</h6>
             <ul className='ingredientesTexto'>
-                {ingredients.toUpperCase.map((ingredient, index) => (
-                <li key={index} className='text-dark'>🍕 {ingredient}</li>
-            ))}
+            {ingredients && ingredients.length > 0 ? (
+            ingredients.map((ingredient, index) => (
+            <li className='text-dark' key={index}>🍕 {ingredient}</li>
+      ))
+          ) : (
+               <li className='text-dark'>No hay ingredientes disponibles</li>
+          )}
             </ul>
         </ListGroup.Item>
         <ListGroup.Item>
@@ -28,8 +41,8 @@ const CardPizza = ({ name, price, ingredients, img, desc }) => {
           </div>
 
         <div className='btncards'>
-          <Button variant="light">Ver más 👀</Button>
-          <Button variant="dark">Añadir 🛒</Button>
+        <Link to={`/pizza/${id}`} className='btn btn-light'>Ver más 👀</Link>
+        <Button variant="dark" onClick={(e) => handleSubmit(e)}>Añadir 🛒</Button>
         </div>
         </ListGroup.Item>
 
