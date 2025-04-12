@@ -1,6 +1,19 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  
+  const { user, userIsLogged, setUserIsLogged, setUser} = useContext(GlobalContext)
+
+  const navegar = useNavigate 
+
+  const handleLogout = () => {
+    setUser(null)
+    setUserIsLogged(false)
+    navegar("/")
+  }
+
   return (
 
     <div className='background h-100'>
@@ -22,17 +35,17 @@ const Profile = () => {
                 rounded-circle border border-2 " alt="Image"/>
               </div>
               <div className="lh-1">
-                <h2 className="mb-0 text-dark">Usuario
+                <h2 className="mb-0 text-dark">{user?.username}
                   <a href="#!" className="text-decoration-none">
   
                   </a>
                 </h2>
-                <p className="mb-0 d-block text-secondary">example@gmail.com</p>
+                <p className="mb-0 d-block text-secondary">{user?.email}</p>
               </div>
             </div>
             <div>
               <a href="#" className="btn btn-outline-primary
-                d-none d-md-block">Cerrar sesión</a>
+                d-none d-md-block" onClick={() => handleLogout()}>Cerrar sesión</a>
             </div>
           </div>
         </div>

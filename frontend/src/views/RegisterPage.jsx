@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
 import './RegisterPage.css'
+import { GlobalContext } from '../context/GlobalContext'
+import { useNavigate } from 'react-router-dom'
 
 const RegisterPage = () => {
+
+  const {setUser, setUserIsLogged, user, userIsLogged} = useContext(GlobalContext)
+
     const [nombre, setNombre] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [error, setError] = useState(false)
+
+    const navegar = useNavigate()
 
     const handleChangeNombre = (e) => {
         setNombre(e.target.value)
@@ -22,6 +29,10 @@ const RegisterPage = () => {
         setPassword(e.target.value)
     }
 
+    const handleChangeConfirmPassword = (e) => {
+        setConfirmPassword(e.target.value)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         if (nombre === "" || email === "" || password === "" || confirmPassword === "" || password !== confirmPassword || password.length < 6) {
@@ -31,9 +42,20 @@ const RegisterPage = () => {
             toast.error("Datos introducidos incorrectamente")
             return false
         }
-        console.log('Formulario enviado')
-        toast.success('Usuario registrado con éxito')
-        setError(false)
+        else {
+          console.log('Formulario enviado')
+          toast.success('Usuario registrado con éxito')
+          setUser({
+            username: nombre,
+            password: password,
+            email: email,
+          })
+          setError(false)
+          setUserIsLogged(true)
+          navegar("/")
+          console.log(user)
+          console.log(userIsLogged)
+        }
     }
     
 
@@ -41,8 +63,8 @@ const RegisterPage = () => {
   return (
     <div className='background'>
       <h1 className='text-center pt-5'>Registrarse</h1>
-      <form action="submit" onSubmit={(e) => handleSubmit(e)}>
-       <div className="d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
+      <form action="submit" onSubmit={handleSubmit}>
+       <div className="d-flex justify-content-center  pt-5" style={{height: '100vh'}}>
        <div className='col-6'>
        <div className='mb-3'>
           <label htmlFor='name' className='form-label'>Nombre</label>

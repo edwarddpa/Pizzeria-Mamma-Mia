@@ -1,20 +1,22 @@
-import { useState } from 'react'
+import { useContext} from 'react'
+import { LoginPage } from './views/LoginPage'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { GlobalContext } from './context/GlobalContext'
+import toast, { Toaster } from 'react-hot-toast'
 import './App.css'
 import NavBar from './components/NavBar'
 import Home from './views/Home'
 import Footer from './components/Footer'
 import RegisterPage from './views/RegisterPage'
-import toast, { Toaster } from 'react-hot-toast'
-import { LoginPage } from './views/LoginPage'
 import Cart from './views/Cart'
 import Pizza from './views/Pizza'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Profile from './views/Profile'
 import NotFound from './views/NotFound'
 
 
 function App() {
 
+  const {userIsLogged} = useContext(GlobalContext)
 
   return (
     <BrowserRouter>
@@ -26,7 +28,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/pizza/:id" element={<Pizza />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/profile' element={userIsLogged ? <Profile /> : <Navigate to="/login" />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
       <Footer />

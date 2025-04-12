@@ -34,7 +34,7 @@ export const LoginPage = () => {
     <div className='background'>
       <h1 className='text-center pt-5'>Iniciar Sesión</h1>
       <form action="submit" onSubmit={(e) => handleSubmit(e)}>
-       <div className="d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
+       <div className=" d-flex justify-content-center pt-5" style={{height: '100vh'}}>
        <div className='col-6'>
         <div className='mb-3'>
           <label htmlFor='name' className='form-label'>Nombre</label>
