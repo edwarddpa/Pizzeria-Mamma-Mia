@@ -1,7 +1,6 @@
 import { useContext} from 'react'
 import { LoginPage } from './views/LoginPage'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { GlobalContext } from './context/GlobalContext'
 import toast, { Toaster } from 'react-hot-toast'
 import './App.css'
 import NavBar from './components/NavBar'
@@ -12,11 +11,12 @@ import Cart from './views/Cart'
 import Pizza from './views/Pizza'
 import Profile from './views/Profile'
 import NotFound from './views/NotFound'
+import { UserContext } from './context/UserContext'
 
 
 function App() {
 
-  const {userIsLogged} = useContext(GlobalContext)
+  const {token} = useContext(UserContext)
 
   return (
     <BrowserRouter>
@@ -24,11 +24,11 @@ function App() {
       <NavBar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={!token ? <RegisterPage /> : <Navigate to="/" />} />
+        <Route path="/login" element={!token ? <LoginPage /> : <Navigate to="/" />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/pizza/:id" element={<Pizza />} />
-        <Route path='/profile' element={userIsLogged ? <Profile /> : <Navigate to="/login" />} />
+        <Route path="/pizza/:parametro" element={<Pizza />} />
+        <Route path='/profile' element={token ? <Profile /> : <Navigate to="/login" />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
       <Footer />

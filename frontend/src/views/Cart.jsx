@@ -1,9 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { CartContext } from '../context/CartContext'
+import { UserContext } from '../context/UserContext'
+import toast from 'react-hot-toast'
 
 const Cart = () => {
 
     const { cart, sumar, restar, precioTotal, recargarCarrito, handlePago } = useContext(CartContext)
+    const { token, setToken} = useContext(UserContext)
 
     if (cart.length === 0) {
         return (
@@ -16,6 +19,15 @@ const Cart = () => {
         </div>
         )
     }
+
+    const toastShown = useRef(false)
+
+    useEffect(() => {
+        if (token === false && !toastShown.current) {
+            toast.error("No puedes realizar tu compra hasta Iniciar Sesión");
+            toastShown.current = true
+        }   
+    }, [token])
 
   return (
     <div className='background'>
@@ -38,7 +50,7 @@ const Cart = () => {
 
         <div className='cartTotal'>
             <h3 className='text-center'>Total: ${precioTotal}</h3>
-            <button type="button" className="btn btn-success btn-lg" onClick={handlePago}>Pagar</button>
+            {token === true ? <button type="button" className="btn btn-success btn-lg" onClick={handlePago}>Pagar</button> : <button type="button" className="btn btn-success btn-lg disabled" onClick={handlePago}>Pagar</button>}
         </div>
     </div>
   )

@@ -5,12 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 import CartProvider from './context/CartContext.jsx'
 import GlobalProvider from './context/GlobalContext.jsx'
+import UserProvider from './context/UserContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <GlobalProvider>
       <CartProvider>
+      <UserProvider>
         <App />
+      </UserProvider>
       </CartProvider>
     </GlobalProvider>
   </StrictMode>,

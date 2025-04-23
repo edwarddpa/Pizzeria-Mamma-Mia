@@ -3,10 +3,12 @@ import toast from 'react-hot-toast'
 import './RegisterPage.css'
 import { GlobalContext } from '../context/GlobalContext'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/UserContext'
 
 const RegisterPage = () => {
 
-  const {setUser, setUserIsLogged, user, userIsLogged} = useContext(GlobalContext)
+  const {setUser, user} = useContext(GlobalContext)
+  const { token, setToken } = useContext(UserContext)
 
     const [nombre, setNombre] = useState('')
     const [email, setEmail] = useState('')
@@ -51,10 +53,10 @@ const RegisterPage = () => {
             email: email,
           })
           setError(false)
-          setUserIsLogged(true)
+          setToken(true)
           navegar("/")
           console.log(user)
-          console.log(userIsLogged)
+          console.log(token)
         }
     }
     

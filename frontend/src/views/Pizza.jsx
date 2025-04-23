@@ -3,19 +3,21 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/esm/Button';
 import toast from 'react-hot-toast'
+import { useParams } from 'react-router-dom';
 
 const Pizza = () => {
     const [pizza , setPizza] = useState({})
+    const { parametro } = useParams()
 
     const getPizza = async () => {
-        const response = await fetch ("http://localhost:5000/api/pizzas/p001")
+        const response = await fetch (`http://localhost:5000/api/pizzas/${parametro}`)
         const data = await response.json()
         setPizza(data)
     }
 
     useEffect(() => {
         getPizza()
-    }, [])
+    }, [parametro, pizza])
 
     if (!pizza) {
         // Muestra un mensaje de carga mientras se obtiene la pizza
