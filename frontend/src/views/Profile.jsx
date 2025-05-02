@@ -1,18 +1,9 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalContext";
-import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const Profile = () => {
   
-  const { user, userIsLogged, setUserIsLogged, setUser} = useContext(GlobalContext)
-
-  const navegar = useNavigate 
-
-  const handleLogout = () => {
-    setUser(null)
-    setUserIsLogged(false)
-    navegar("/")
-  }
+  const { user, handleLogout} = useContext(UserContext)
 
   return (
 
@@ -35,7 +26,7 @@ const Profile = () => {
                 rounded-circle border border-2 " alt="Image"/>
               </div>
               <div className="lh-1">
-                <h2 className="mb-0 text-dark">{user?.username}
+                <h2 className="mb-0 text-dark">{user?.nombre}
                   <a href="#!" className="text-decoration-none">
   
                   </a>

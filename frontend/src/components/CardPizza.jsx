@@ -9,7 +9,7 @@ import { CartContext } from '../context/CartContext';
 
 const CardPizza = ({ id, name, price, ingredients, img, desc }) => {
 
-  const { sumar, cart } = useContext(CartContext)
+  const { sumar} = useContext(CartContext)
 
   const handleSubmit = (e) => {
         e.preventDefault()

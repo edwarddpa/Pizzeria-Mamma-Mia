@@ -1,39 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
+import { UserContext } from '../context/UserContext'
 
 export const LoginPage = () => {
-  const [nombre, setNombre] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
 
-  const handleChangeNombre = (e) => {
-    setNombre(e.target.value)
-  }
+  const {handleChangeNombre, handleChangePassword, handleChangeEmail, nombre, email, password, handleSubmitLogin} = useContext(UserContext)
 
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value)
-  }
 
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (nombre === "" || email === "" || password === "" || password.length < 6) {
-      console.log('Todos los campos son obligatorios')
-      toast.error("Datos introducidos incorrectamente")
-      return false
-    }
-    console.log('Formulario enviado')
-    toast.success('Inicio de sesión con éxito')
-  }
 
 
   return (
     <div className='background'>
       <h1 className='text-center pt-5'>Iniciar Sesión</h1>
-      <form action="submit" onSubmit={(e) => handleSubmit(e)}>
+      <form action="submit" onSubmit={(e) => handleSubmitLogin(e)}>
        <div className=" d-flex justify-content-center pt-5" style={{height: '100vh'}}>
        <div className='col-6'>
         <div className='mb-3'>

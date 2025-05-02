@@ -1,7 +1,8 @@
 import { useContext} from 'react'
 import { LoginPage } from './views/LoginPage'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
+import { UserContext } from './context/UserContext'
 import './App.css'
 import NavBar from './components/NavBar'
 import Home from './views/Home'
@@ -11,7 +12,6 @@ import Cart from './views/Cart'
 import Pizza from './views/Pizza'
 import Profile from './views/Profile'
 import NotFound from './views/NotFound'
-import { UserContext } from './context/UserContext'
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   const {token} = useContext(UserContext)
 
   return (
-    <BrowserRouter>
+    <>
       <Toaster/>
       <NavBar />
       <Routes>
@@ -32,7 +32,7 @@ function App() {
         <Route path='/*' element={<NotFound />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </>
   )
 }
 

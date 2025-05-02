@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/esm/Button';
 import toast from 'react-hot-toast'
 import { useParams } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
-const Pizza = () => {
+const Pizza = ({id}) => {
     const [pizza , setPizza] = useState({})
     const { parametro } = useParams()
+
+    const { sumar} = useContext(CartContext)
 
     const getPizza = async () => {
         const response = await fetch (`http://localhost:5000/api/pizzas/${parametro}`)
@@ -26,6 +29,7 @@ const Pizza = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        sumar(id)
         toast.success('Pizza añadida al carrito!')
     }
      

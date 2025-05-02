@@ -8,8 +8,7 @@ const GlobalProvider = ({ children }) => {
 
     // register & login
 
-    const [user, setUser] = useState(null)
-    const [userIsLogged, setUserIsLogged] = useState(false)
+    
     const [products, setProducts] = useState([])
 
     const getPizzas = async () => {
@@ -23,7 +22,7 @@ const GlobalProvider = ({ children }) => {
       }, [])
 
     return (
-        <GlobalContext.Provider value={{listaPizzas, setListaPizzas, getPizzas, pizzas, user, setUser, setUserIsLogged, userIsLogged}}>
+        <GlobalContext.Provider value={{listaPizzas, setListaPizzas, getPizzas, pizzas}}>
             {children}
         </GlobalContext.Provider>
     )

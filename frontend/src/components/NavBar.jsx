@@ -14,15 +14,8 @@ import toast from 'react-hot-toast';
 
 const NavBar = () => {
 
-    const { user, setUser} = useContext(GlobalContext)
-    const { token, setToken} = useContext(UserContext)
+    const { token, handleLogout} = useContext(UserContext)
     const { cart, precioTotal} = useContext(CartContext)
-    const navegar = useNavigate()
-    const handleLogout = () => {
-      setUser(null)
-      setToken(false)
-      navegar("/")
-    }
 
     const handleProfile = (e) => {
       toast.error("Para acceder a tu perfil necesitas iniciar sesión")

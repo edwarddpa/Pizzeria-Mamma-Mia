@@ -1,71 +1,15 @@
 import React, { useContext, useState } from 'react'
-import toast from 'react-hot-toast'
-import './RegisterPage.css'
-import { GlobalContext } from '../context/GlobalContext'
-import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
+import './RegisterPage.css'
 
 const RegisterPage = () => {
 
-  const {setUser, user} = useContext(GlobalContext)
-  const { token, setToken } = useContext(UserContext)
-
-    const [nombre, setNombre] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const [error, setError] = useState(false)
-
-    const navegar = useNavigate()
-
-    const handleChangeNombre = (e) => {
-        setNombre(e.target.value)
-        console.log
-    }
-
-    const handleChangeEmail = (e) => {
-        setEmail(e.target.value)
-    }
-    
-    const handleChangePassword = (e) => {
-        setPassword(e.target.value)
-    }
-
-    const handleChangeConfirmPassword = (e) => {
-        setConfirmPassword(e.target.value)
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if (nombre === "" || email === "" || password === "" || confirmPassword === "" || password !== confirmPassword || password.length < 6) {
-            console.log('Las contraseñas no coinciden')
-            console.log('Todos los campos son obligatorios')
-            setError(true)
-            toast.error("Datos introducidos incorrectamente")
-            return false
-        }
-        else {
-          console.log('Formulario enviado')
-          toast.success('Usuario registrado con éxito')
-          setUser({
-            username: nombre,
-            password: password,
-            email: email,
-          })
-          setError(false)
-          setToken(true)
-          navegar("/")
-          console.log(user)
-          console.log(token)
-        }
-    }
-    
-
+  const { handleSubmitRegister, handleChangePassword, handleChangeEmail, handleChangeNombre, handleChangeConfirmPassword, email, password, nombre, confirmPassword } = useContext(UserContext)
 
   return (
     <div className='background'>
       <h1 className='text-center pt-5'>Registrarse</h1>
-      <form action="submit" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmitRegister}>
        <div className="d-flex justify-content-center  pt-5" style={{height: '100vh'}}>
        <div className='col-6'>
        <div className='mb-3'>
@@ -75,7 +19,7 @@ const RegisterPage = () => {
         </div>
         <div className='mb-3'>
           <label htmlFor='email' className='form-label'>Correo Electrónico</label>
-          <input type='email' className='form-control' id='email' name='email' value={email} onChange={(e) => handleChangeEmail(e)} placeholder='example@mail.com' required />
+          <input type='email' className='form-control' id='email' name='email' value={email} onChange={(e) => handleChangeEmail(e)} placeholder='example@mail.com' required/>
           {email === "" && <p className='text-danger'>El campo Correo Electrónico es obligatorio</p>}
         </div>
         <div className='mb-3'>
@@ -86,12 +30,12 @@ const RegisterPage = () => {
         </div>
         <div className='mb-3'>
           <label htmlFor='confirmPassword' className='form-label'>Confirmar Contraseña</label>
-          <input type='password' className='form-control' id='confirmPassword' name='confirmPassword' value={confirmPassword} onChange={(e) => handleChangeConfirmPassword(e)} placeholder='Confirma tu contraseña'  />
-          {password !== confirmPassword && <p className='text-danger'>Las contraseñas no coinciden</p>}
+          <input type='password' className='form-control' id='confirmPassword' name='confirmPassword' value={confirmPassword} onChange={(e) => handleChangeConfirmPassword(e)} placeholder='Confirma tu contraseña'/>
+          {confirmPassword && password !== confirmPassword && <p className='text-danger'>Las contraseñas no coinciden</p>}
         </div>
         <button type='submit' className='btn btn-primary'>Registrarse</button>
-       </div>
-       </div>
+        </div>
+        </div>
       </form>
     </div>
   )
